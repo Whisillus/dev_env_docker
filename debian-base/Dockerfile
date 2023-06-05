@@ -42,6 +42,14 @@ RUN apt update \
     xclip \
     zip
 
+# install zsh
+RUN apt update \
+    && apt install -y \
+    autojump \
+    zsh \
+    zsh-autosuggestions \
+    zsh-syntax-highlighting
+
 # for download and setup
 RUN mkdir -p /root/tmp
 
@@ -74,6 +82,9 @@ RUN git clone --depth 1 \
 RUN nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 RUN nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
+# change default shell for root
+RUN chsh -s /usr/bin/zsh root
+
 # remove tmp files
 RUN rm -rf /root/tmp
 RUN rm -rf /var/lib/apt/lists/*
@@ -81,5 +92,5 @@ RUN rm -rf /var/lib/apt/lists/*
 # setup default dir, the project should be mounted here
 WORKDIR /root/workspace
 
-# setup CMD
-# CMD ["tail", "-f", "/dev/null"]
+# setup CMD for new shell
+CMD ["/usr/bin/zsh"]
