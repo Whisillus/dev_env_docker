@@ -4,8 +4,6 @@ FROM debian:stable
 ARG DEBIAN_FRONTEND=noninteractive
 
 # todo: git setup?
-# todo: install nvim plugin
-# todo: move files
 
 # We use lazygit
 ARG LG='lazygit'
@@ -37,6 +35,7 @@ RUN apt update \
     pylint \
     python3 \
     python3-autopep8 \
+    python3-venv\
     ripgrep \
     tree \
     unzip \
@@ -77,6 +76,7 @@ RUN nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 # remove tmp files
 RUN rm -rf /root/tmp
+RUN rm -rf /var/lib/apt/lists/*
 
 # setup default dir, the project should be mounted here
 WORKDIR /root/workspace
