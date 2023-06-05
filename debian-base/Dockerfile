@@ -3,6 +3,10 @@ FROM debian:stable
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+# todo: git setup?
+# todo: install nvim plugin
+# todo: move files
+
 # We use lazygit
 ARG LG='lazygit'
 ARG LG_GITHUB='https://github.com/jesseduffield/lazygit/releases/download/v0.38.2/lazygit_0.38.2_Linux_x86_64.tar.gz'
@@ -51,7 +55,6 @@ RUN cd /root/tmp/neovim && git checkout stable \
     && make -j4 CMAKE_BUILD_TYPE=Release \
     && make install
 
-
 # download nvim Packer
 RUN git clone --depth 1 \
     https://github.com/wbthomason/packer.nvim \
@@ -64,4 +67,4 @@ RUN rm -rf /root/tmp
 WORKDIR /root/workspace
 
 # setup CMD
-CMD ["tail", "-f", "/dev/null"]
+# CMD ["tail", "-f", "/dev/null"]
