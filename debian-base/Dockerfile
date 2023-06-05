@@ -21,17 +21,22 @@ ENV TZ=Europe/Berlin
 RUN apt update \
     && apt install -y \
     build-essential \
+    clang-format \
     cmake \
     curl \
     fzf \
     gettext \
     gdb \
     git \
+    locales \
+    locales-all \
     ninja-build \
     nodejs \
     npm \
     pip \
+    pylint \
     python3 \
+    python3-autopep8 \
     ripgrep \
     tree \
     unzip \
@@ -46,8 +51,9 @@ RUN mkdir -p /root/tmp/lazygit
 RUN cd /root/tmp/lazygit && curl --location --output $LG_FILENAME $LG_GITHUB
 RUN cd /root/tmp/lazygit && tar xzvf $LG_FILENAME && mv $LG /usr/bin/
 
-# cooperate nvim with python3
+# cooperate nvim 
 RUN pip3 install pynvim
+RUN npm install -g neovim
 
 # install nvim
 RUN cd /root/tmp && git clone https://github.com/neovim/neovim neovim
@@ -55,10 +61,19 @@ RUN cd /root/tmp/neovim && git checkout stable \
     && make -j4 CMAKE_BUILD_TYPE=Release \
     && make install
 
-# download nvim Packer
+# copy config files
+COPY ./config/nvim/ /root/.config/nvim/
+COPY ./home/ /root/
+
+# download and install nvim Packer
 RUN git clone --depth 1 \
     https://github.com/wbthomason/packer.nvim \
     /root/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+# install nvim plugins
+# todo: issue here: https://github.com/wbthomason/packer.nvim/issues/502
+RUN nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+RUN nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 # remove tmp files
 RUN rm -rf /root/tmp
