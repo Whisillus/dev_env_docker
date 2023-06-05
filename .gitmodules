@@ -1,0 +1,3 @@
+[submodule "debian-base/config/nvim"]
+	path = debian-base/config/nvim
+	url = git@github.com:nielass/NvimConfig.git
