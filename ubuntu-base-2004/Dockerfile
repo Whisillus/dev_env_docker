@@ -94,3 +94,6 @@ WORKDIR /root/workspace
 
 # setup CMD for new shell
 CMD ["/usr/bin/zsh"]
+
+# build this with
+# docker build -t ubuntu-dev-base .
