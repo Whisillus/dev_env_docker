@@ -1,3 +1,5 @@
+# build this with
+# docker build -t nielass/debian-dev-base .
 
 FROM debian:stable
 
@@ -95,5 +97,3 @@ WORKDIR /root/workspace
 # setup CMD for new shell
 CMD ["/usr/bin/zsh"]
 
-# build this with
-# docker build -t debian-dev-base .
