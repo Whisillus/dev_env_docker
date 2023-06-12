@@ -90,7 +90,7 @@ RUN rm -rf /root/tmp
 RUN rm -rf /var/lib/apt/lists/*
 
 # setup default dir, the project should be mounted here
-WORKDIR /root/workspace
+WORKDIR /workspace
 
 # setup CMD for new shell
 CMD ["/usr/bin/zsh"]
