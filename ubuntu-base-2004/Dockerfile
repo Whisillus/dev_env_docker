@@ -1,4 +1,7 @@
 
+# build this with
+# docker build -t nielass/ros-noetic .
+
 FROM ubuntu:20.04
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -87,7 +90,24 @@ RUN chsh -s /usr/bin/zsh root
 
 # remove tmp files
 RUN rm -rf /root/tmp
-RUN rm -rf /var/lib/apt/lists/*
+# RUN rm -rf /var/lib/apt/lists/*
+
+# install ROS noetic
+RUN /bin/sh -c 'echo "deb http://packages.ros.org/ros/ubuntu focal main" > /etc/apt/sources.list.d/ros-latest.list'
+RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc \
+    | apt-key add -
+
+RUN apt update \
+    && apt install -y \
+    ros-noetic-desktop-full \
+    python3-rosdep \
+    python3-rosinstall \
+    python3-rosinstall-generator \
+    python3-wstool \
+    build-essential
+
+# ROS zsh setup
+RUN echo 'source /opt/ros/noetic/setup.zsh' >> /root/.zshrc
 
 # setup default dir, the project should be mounted here
 WORKDIR /workspace
@@ -95,5 +115,3 @@ WORKDIR /workspace
 # setup CMD for new shell
 CMD ["/usr/bin/zsh"]
 
-# build this with
-# docker build -t ubuntu-dev-base .
