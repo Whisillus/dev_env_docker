@@ -3,6 +3,11 @@ FROM rtabmap/frontier2022
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+# We use lazygit
+ARG LG='lazygit'
+ARG LG_GITHUB='https://github.com/jesseduffield/lazygit/releases/download/v0.38.2/lazygit_0.38.2_Linux_x86_64.tar.gz'
+ARG LG_FILENAME='lazygit.tar.gz'
+
 # install ROS noetic
 RUN /bin/sh -c 'echo "deb http://packages.ros.org/ros/ubuntu focal main" > /etc/apt/sources.list.d/ros-latest.list'
 RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc \
@@ -15,7 +20,15 @@ RUN apt update \
     python3-rosinstall \
     python3-rosinstall-generator \
     python3-wstool \
+    ros-noetic-navigation \
     build-essential
+
+# install a newer nodejs
+RUN curl -sL \
+    https://deb.nodesource.com/setup_16.x \
+    -o /tmp/nodesource_setup.shell \
+    && bash /tmp/nodesource_setup.sh \
+    && apt install nodejs
 
 RUN apt update \
     && apt install -y \
@@ -28,7 +41,6 @@ RUN apt update \
     git \
     locales \
     locales-all \
-    nodejs \
     npm \
     pip \
     pylint \
@@ -58,7 +70,7 @@ RUN mkdir -p /root/tmp/lazygit
 RUN cd /root/tmp/lazygit && curl --location --output $LG_FILENAME $LG_GITHUB
 RUN cd /root/tmp/lazygit && tar xzvf $LG_FILENAME && mv $LG /usr/bin/
 
-# cooperate nvim 
+# cooperate nvim
 RUN pip3 install pynvim
 RUN npm install -g neovim
 

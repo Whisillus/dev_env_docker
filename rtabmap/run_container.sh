@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-image_name="nielass/ubuntu-dev-base"
+image_name="nielass/rtabmap-dev"
 container_name="rtabmap-dev"
 container_exsit=$(docker ps -q -f name=${container_name})
 
