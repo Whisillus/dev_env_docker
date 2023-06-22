@@ -20,7 +20,11 @@ else
         --name ${container_name} \
         -it \
         --rm \
+        --network host \
         --gpus all \
         --runtime=nvidia \
+        -e NVIDIA_VISIBLE_DEVICES=all \
+        -e NVIDIA_DRIVER_CAPABILITIES=all \
+        -v "${HOME}/.ssh:/root/.ssh" \
         ${image_name}
 fi
