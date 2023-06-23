@@ -1,7 +1,7 @@
 # build this with
 # docker build -t nielass/debian-dev-base .
 
-FROM debian:stable
+FROM debian:bullseye
 
 ARG DEBIAN_FRONTEND=noninteractive
 
