@@ -44,6 +44,11 @@ RUN apt update \
     xclip \
     zip
 
+# Get new nodejs and install some modules
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt install -y nodejs \
+    && npm install -g vscode-langservers-extracted
+
 # install zsh
 RUN apt update \
     && apt install -y \
