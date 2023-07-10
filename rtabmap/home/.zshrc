@@ -65,8 +65,8 @@ alias glga='git log --graph --abbrev-commit --oneline --all'
 alias gs='git status'
 alias gsw='git switch'
 
-alias s='ls -h'
-alias l='ls -alh'
+alias s='ls -h --color'
+alias l='ls -alh --color'
 alias p='python3'
 alias v='nvim'
 
