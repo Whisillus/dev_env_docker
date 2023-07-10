@@ -23,13 +23,6 @@ RUN apt update \
     ros-noetic-navigation \
     build-essential
 
-# install a newer nodejs
-RUN curl -sL \
-    https://deb.nodesource.com/setup_16.x \
-    -o /tmp/nodesource_setup.shell \
-    && bash /tmp/nodesource_setup.sh \
-    && apt install nodejs
-
 RUN apt update \
     && apt install -y \
     clang-format \
@@ -79,6 +72,11 @@ RUN cd /root/tmp && git clone https://github.com/neovim/neovim neovim
 RUN cd /root/tmp/neovim && git checkout stable \
     && make -j4 CMAKE_BUILD_TYPE=Release \
     && make install
+
+# install a newer nodejs
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt install -y nodejs \
+    && npm install -g vscode-langservers-extracted
 
 # copy config files
 COPY ./config/nvim/ /root/.config/nvim/
