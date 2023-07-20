@@ -41,6 +41,7 @@ RUN apt update \
     ripgrep \
     tree \
     unzip \
+    wget \
     xclip \
     zip
 
