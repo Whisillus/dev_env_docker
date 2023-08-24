@@ -1,6 +1,3 @@
-[submodule "debian-base/config/nvim"]
-	path = debian-base/config/nvim
-	url = https://github.com/nielass/NvimConfig.git
-[submodule "rtabmap/config/nvim"]
-	path = rtabmap/config/nvim
+[submodule "config/nvim"]
+	path = config/nvim
 	url = https://github.com/nielass/NvimConfig.git

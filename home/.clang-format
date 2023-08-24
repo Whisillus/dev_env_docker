@@ -1,0 +1,18 @@
+---
+BasedOnStyle:  Google
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AllowAllArgumentsOnNextLine: true
+AllowShortEnumsOnASingleLine: false
+AllowShortBlocksOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
+AllowShortLambdasOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+ColumnLimit:     80
+DerivePointerAlignment: false
+IndentCaseLabels: true
+IndentWidth:     4
+PointerAlignment: Right
+ReflowComments:  false

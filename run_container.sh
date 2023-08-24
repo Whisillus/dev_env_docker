@@ -22,6 +22,11 @@ else
         --rm \
         --network host \
         --gpus all \
+        -e "DISPLAY=$DISPLAY" \
+        -e "QT_X11_NO_MITSHM=1" \
+        -v "/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+        -e "XAUTHORITY=$XAUTH" \
+        -v "$XAUTH:$XAUTH" \
         --runtime=nvidia \
         -e NVIDIA_VISIBLE_DEVICES=all \
         -e NVIDIA_DRIVER_CAPABILITIES=all \
