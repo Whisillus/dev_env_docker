@@ -1,10 +1,12 @@
 #!/bin/bash
 
 set -e
+# default values
 image_name="whisillus/dev-env"
 container_name="dev-env"
 workspace_path=$(pwd)
 
+# print func
 usage() {
     echo "$(basename "$0")"
     echo -e "    [-i image_name] [-n container_name] [-w workspace_path]\n"
@@ -30,6 +32,7 @@ runexist() {
     printinfo
 }
 
+# process params
 while getopts 'i:n:w:h' OPT; do
     case $OPT in
         i) image_name="${OPTARG}" ;;
@@ -42,6 +45,7 @@ while getopts 'i:n:w:h' OPT; do
     esac
 done
 
+# run the container
 container_exsit=$(docker ps -q -f name=${container_name})
 
 # check if the contained is already running
