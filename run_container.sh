@@ -11,9 +11,9 @@ usage() {
     echo "$(basename "$0")"
     echo -e "    [-i image_name] [-n container_name] [-w workspace_path]\n"
     echo -e "Description:\n"
-    echo -e "  image_name, the name of the image you want to run (default: ${image_name})\n"
-    echo -e "  container_name, the name of running container (default: ${container_name})\n"
-    echo -e "  workspace_path, the path mount to /workspace (default: ${workspace_path})\n"
+    echo -e "  -i image_name, the name of the image you want to run (default: ${image_name})\n"
+    echo -e "  -n container_name, the name of running container (default: ${container_name})\n"
+    echo -e "  -w workspace_path, the path mount to /workspace (default: ${workspace_path})\n"
 }
 
 printinfo() {

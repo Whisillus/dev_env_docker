@@ -15,4 +15,5 @@ DerivePointerAlignment: false
 IndentCaseLabels: true
 IndentWidth:     4
 PointerAlignment: Right
+ReferenceAlignment: Left
 ReflowComments:  false

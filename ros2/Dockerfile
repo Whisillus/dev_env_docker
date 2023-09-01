@@ -20,6 +20,7 @@ RUN apt update \
     && apt install -y \
     build-essential \
     clang-format \
+    clang-tidy \
     cmake \
     curl \
     fzf \
