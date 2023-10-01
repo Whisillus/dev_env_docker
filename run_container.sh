@@ -1,6 +1,10 @@
 #!/bin/bash
 
 set -e
+# for output color
+Nc='\033[0m' # No Color
+BRed='\033[1;31m'
+BCyan='\033[1;36m'
 # default values
 image_name="whisillus/dev-env"
 container_name="dev-env"
@@ -23,12 +27,12 @@ printinfo() {
 }
 
 startnew() {
-    echo "Container start running!"
+    echo -e "${BRed}Container start running!${Nc}"
     printinfo
 }
 
 runexist() {
-    echo "Exec current container!!"
+    echo -e "${BCyan}Exec current container!!${Nc}"
     printinfo
 }
 
@@ -62,6 +66,7 @@ else
         -d \
         -it \
         --rm \
+        --privileged \
         --network host \
         --gpus all \
         -e "DISPLAY=$DISPLAY" \

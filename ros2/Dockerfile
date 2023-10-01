@@ -19,19 +19,20 @@ ENV TZ=Europe/Berlin
 RUN apt update \
     && apt install -y \
     build-essential \
-    clang \
-    clangd \
-    clang-format \
-    clang-tidy \
+    clang-15 \
+    clangd-15 \
+    clang-format-15 \
     cmake \
     curl \
     fzf \
+    libfuse2 \
     gettext \
     gdb \
     git \
     ninja-build \
     pip \
     pylint \
+    python3-venv \
     ripgrep \
     tree \
     unzip \
@@ -39,9 +40,9 @@ RUN apt update \
     xclip \
     zip
 
-# for download and setup
+# setup node & npm
 RUN mkdir -p /root/tmp && cd /root/tmp \ 
-    && curl -sL https://deb.nodesource.com/setup_16.x | bash \
+    && curl -sL https://deb.nodesource.com/setup_18.x | bash \
     && apt install -y nodejs \
     && npm install -g vscode-langservers-extracted
 
@@ -59,13 +60,16 @@ RUN cd /root/tmp/lazygit && curl --location --output $LG_FILENAME $LG_GITHUB
 RUN cd /root/tmp/lazygit && tar xzvf $LG_FILENAME && mv $LG /usr/bin/
 
 # install nvim
-RUN cd /root/tmp && git clone https://github.com/neovim/neovim neovim
-RUN cd /root/tmp/neovim && git checkout stable \
-    && make -j4 CMAKE_BUILD_TYPE=Release \
-    && make install
+RUN mkdir -p /root/tmp \
+    && cd /root/tmp \
+    && wget -O nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage \
+    && chmod +x nvim \
+    && cp nvim /usr/local/bin
 
-# copy config files
-COPY ./config/nvim/ /root/.config/nvim/
+# config files
+# COPY ./config/nvim/ /root/.config/nvim/
+RUN mkdir -p /root/.config && cd /root/.config \
+    && git clone https://github.com/Whisillus/NvimConfig.git nvim
 COPY ./home/ /root/
 
 # change default shell for root
@@ -73,7 +77,6 @@ RUN chsh -s /usr/bin/zsh root
 
 # remove tmp files
 RUN rm -rf /root/tmp
-RUN rm -rf /var/lib/apt/lists/*
 
 # setup default dir, the project should be mounted here
 WORKDIR /workspace
