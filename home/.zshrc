@@ -40,7 +40,7 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# nielass begin
+# whisillus begin
 
 PROMPT="%F{yellow}%n%f @ %B%F{cyan}%~%f%b: "
 RPROMPT="%F{white}%T%f"
@@ -70,5 +70,5 @@ alias l='ls -alh --color --group-directories-first'
 alias p='python3'
 alias v='nvim'
 
-# nielass end
+# whisillus end
 

@@ -1,7 +1,7 @@
 # build this with
 # docker build -t nielass/debian-dev-base .
 
-FROM osrf/ros:humble-desktop-full
+FROM osrf/ros:noetic-desktop-full
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -19,9 +19,9 @@ ENV TZ=Europe/Berlin
 RUN apt update \
     && apt install -y \
     build-essential \
-    clang-15 \
-    clangd-15 \
-    clang-format-15 \
+    clang \
+    clangd \
+    clang-format \
     cmake \
     curl \
     fzf \
