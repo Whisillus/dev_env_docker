@@ -66,6 +66,15 @@ RUN mkdir -p /root/tmp \
     && chmod +x nvim \
     && cp nvim /usr/local/bin
 
+# install gtest
+RUN mkdir -p /root/tmp \
+    && cd /root/tmp \
+    && git clone https://github.com/google/googletest.git -b v1.14.0 \
+    && cd googletest \
+    && cmake -B build \
+    && cmake --build build -j12 \
+    && cmake -E chdir "build" make install
+
 # config files
 # COPY ./config/nvim/ /root/.config/nvim/
 RUN mkdir -p /root/.config && cd /root/.config \
