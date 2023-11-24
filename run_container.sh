@@ -94,8 +94,7 @@ else
         --runtime=nvidia \
         -e NVIDIA_VISIBLE_DEVICES=all \
         -e NVIDIA_DRIVER_CAPABILITIES=all \
-        -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK \
-        -v "$SSH_AUTH_SOCK:$SSH_AUTH_SOCK" \
+        -v "${HOME}/.ssh:/root/.ssh" \
         -v "${workspace_path}:/workspace" \
         ${image_repo}:${image_tag}
 
