@@ -1,0 +1,24 @@
+services:
+  ros:
+    image: whisillus/ros2_dev
+    container_name: ros2
+    network_mode: host
+    stdin_open: true
+    tty: true
+    volumes:
+      - ${SSH_AUTH_SOCK}:${SSH_AUTH_SOCK}
+      - ${HOME}/.ssh:/root/.ssh
+      - ${WORKSPACE}:/workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      DISPLAY: ${DISPLAY}
+      QT_X11_NO_MITSHM: 1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+    build:
+      context: .
+      dockerfile: Dockerfile
