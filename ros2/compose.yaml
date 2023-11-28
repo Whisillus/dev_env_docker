@@ -2,7 +2,8 @@ services:
   ros:
     image: whisillus/ros2_dev
     container_name: ros2
-    network_mode: host
+    # network_mode: host
+    privileged: true
     stdin_open: true
     tty: true
     volumes:
