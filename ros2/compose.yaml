@@ -13,6 +13,7 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
     environment:
       DISPLAY: ${DISPLAY}
+      SSH_AUTH_SOCK: ${SSH_AUTH_SOCK}
       QT_X11_NO_MITSHM: 1
     deploy:
       resources:

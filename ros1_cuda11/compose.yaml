@@ -1,7 +1,7 @@
 services:
-  ros:
-    image: whisillus/ros1_dev
-    container_name: ros1
+  cuda:
+    image: whisillus/ros1-cuda
+    container_name: ros_cuda
     # network_mode: host
     privileged: true
     stdin_open: true
@@ -21,6 +21,3 @@ services:
           devices:
             - driver: nvidia
               capabilities: [gpu]
-    build:
-      context: .
-      dockerfile: Dockerfile
