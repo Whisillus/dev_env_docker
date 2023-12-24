@@ -65,6 +65,11 @@ alias glga='git log --graph --abbrev-commit --oneline --all'
 alias gs='git status'
 alias gsw='git switch'
 
+alias cmb='cmake --build build -j$(nproc)'
+alias cmc='cmake -B build'
+alias cmn='cmake -B build -G Ninja'
+alias cmt='cmake -E chdir "build" ctest'
+
 alias s='ls -h --color --group-directories-first'
 alias l='ls -alh --color --group-directories-first'
 alias p='python3'
