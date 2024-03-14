@@ -66,7 +66,7 @@ alias gs='git status'
 alias gsw='git switch'
 
 alias cmb='cmake --build build -j$(nproc)'
-alias cmc='cmake -B build'
+alias cmm='cmake -B build'
 alias cmn='cmake -B build -G Ninja'
 alias cmt='cmake -E chdir "build" ctest'
 
