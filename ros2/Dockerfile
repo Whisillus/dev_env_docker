@@ -1,7 +1,5 @@
-# build this with
-# docker build -t nielass/debian-dev-base .
 
-FROM osrf/ros:humble-desktop-full
+FROM osrf/ros:iron-desktop-full
 
 ARG DEBIAN_FRONTEND=noninteractive
 
