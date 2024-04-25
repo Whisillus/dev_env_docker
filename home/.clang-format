@@ -11,6 +11,7 @@ AllowShortLambdasOnASingleLine: false
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false
 ColumnLimit:     80
+AccessModifierOffset: -2
 DerivePointerAlignment: false
 IndentCaseLabels: true
 IndentWidth:     4
