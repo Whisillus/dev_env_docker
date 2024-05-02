@@ -1,5 +1,5 @@
 
-FROM osrf/ros:iron-desktop-full
+FROM osrf/ros:humble-desktop-full
 
 ARG DEBIAN_FRONTEND=noninteractive
 
