@@ -25,6 +25,7 @@ RUN apt update \
     fzf \
     language-pack-en-base \
     libfuse2 \
+    libgtk2.0-dev \
     gettext \
     gdb \
     git \
