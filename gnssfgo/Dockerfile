@@ -1,5 +1,5 @@
 
-FROM nvcr.io/nvidia/cuda:12.0.0-cudnn8-devel-ubuntu22.04
+FROM nvcr.io/nvidia/cuda:12.2.2-cudnn8-devel-ubuntu22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -41,6 +41,15 @@ RUN mkdir -p /root/tmp && cd /root/tmp \
     && apt update \
     && apt install -y nodejs \
     && npm install -g vscode-langservers-extracted
+
+# setup pytorch, should use with CUDA 12.1
+RUN pip3 install \
+    torch \
+    torchvision \
+    torchaudio \
+    numpy==1.26.4 \
+    onnx \
+    onnxruntime
 
 # install ros2 humble
 RUN apt update \
@@ -170,6 +179,5 @@ WORKDIR /workspace
 
 # setup CMD for new shell
 CMD ["/usr/bin/bash"]
-
 
 
