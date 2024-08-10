@@ -80,6 +80,7 @@ RUN apt update \
     ros-humble-novatel-gps-driver \
     ros-humble-novatel-gps-msgs \
     ros-humble-camera-calibration-parsers \
+    ros-humble-rosbag2-storage-mcap \
     libgoogle-glog-dev \
     ros-humble-geographic-msgs \
     ros-humble-marti-nav-msgs \
@@ -176,6 +177,7 @@ WORKDIR /workspace
 # OpenCV
 # Tensorrt
 # libTorch
+
 
 # setup CMD for new shell
 CMD ["/usr/bin/bash"]
